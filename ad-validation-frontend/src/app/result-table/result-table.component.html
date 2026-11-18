@@ -1,0 +1,61 @@
+<div class="result-box">
+    <div class="table-toolbar">
+        <mat-form-field appearance="outline" class="search-field">
+            <mat-icon matPrefix>search</mat-icon>
+            <input matInput [value]="search()" (input)="onSearch($event)" placeholder="Search table data..." />
+        </mat-form-field>
+        <button mat-stroked-button color="primary" class="configure-btn" type="button" aria-label="Configure columns"
+            (click)="openColumnsDialog()">
+            Configure Columns
+        </button>
+    </div>
+
+    <div class="table-scroll">
+        <table class="data-table" aria-label="Validation results table">
+            <thead>
+                <tr>
+                    <th>Account ID</th>
+                    <th>Result</th>
+                    <th>Reason</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of pagedRows(); trackBy: trackByAccount">
+                    <td><strong>{{ row.account }}</strong></td>
+                    <td>
+                        <span [class]="chipClass(row)">{{ statusChip(row) }}</span>
+                    </td>
+                    <td>{{ row.reason }}</td>
+                </tr>
+                <tr *ngIf="!pagedRows().length" class="empty-row">
+                    <td colspan="3">No matching records.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-footer">
+        <div class="items-per-page">
+            <label>Items per page</label>
+            <select [value]="pageSize()" (change)="pageIndex.set(0); pageSize.set(+($any($event.target).value))">
+                <option [value]="10">10</option>
+                <option [value]="25">25</option>
+                <option [value]="50">50</option>
+                <option [value]="100">100</option>
+            </select>
+        </div>
+
+        <div class="pager-info">{{ rangeText }}</div>
+
+        <div class="pager-buttons">
+            <button mat-icon-button type="button" [disabled]="pageIndex() === 0" aria-label="Previous page"
+                (click)="pageIndex.set(pageIndex() - 1)">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button type="button" [disabled]="pageIndex() >= pageCount() - 1" aria-label="Next page"
+                (click)="pageIndex.set(pageIndex() + 1)">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+:host {
+    display: block;
+}
+
+.upload-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.drop-zone {
+    min-height: 152px;
+    border: 1.5px dashed var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.drop-zone:hover,
+.is-dragging .drop-zone {
+    border-color: var(--navy);
+    background: rgba(23, 68, 120, 0.04);
+}
+
+.upload-box.is-valid .drop-zone {
+    border-color: var(--success);
+    background: rgba(19, 177, 119, 0.06);
+}
+
+.upload-box.has-error .drop-zone {
+    border-color: var(--danger);
+    background: rgba(198, 44, 44, 0.04);
+}
+
+.upload-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(29, 53, 87, 0.08);
+    color: var(--navy);
+}
+
+.upload-icon.success {
+    background: rgba(19, 177, 119, 0.12);
+    color: var(--success);
+}
+
+.upload-icon.error {
+    background: rgba(198, 44, 44, 0.12);
+    color: var(--danger);
+}
+
+.upload-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.upload-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.upload-hint {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.selected-file-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.file-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.file-size {
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    background: var(--surface-muted);
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.upload-error {
+    color: var(--danger);
+    font-size: 0.74rem;
+}
+
+.sheet-field {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    padding: 0.65rem 0.75rem;
+}
+
+.sheet-field mat-icon {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
+.sheet-field input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font: inherit;
+    color: var(--text);
+}
+
+.sheet-field input::placeholder {
+    color: var(--text-muted);
+}

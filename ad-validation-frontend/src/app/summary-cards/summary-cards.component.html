@@ -1,0 +1,9 @@
+<div class="summary-grid">
+    <div class="card" *ngFor="let card of cards; trackBy: trackByCard" [attr.data-tone]="card.tone">
+        <div class="icon-wrap" [attr.data-tone]="card.tone">
+            <mat-icon>{{ card.icon }}</mat-icon>
+        </div>
+        <div class="value">{{ card.value }}</div>
+        <div class="label">{{ card.label }}</div>
+    </div>
+</div>

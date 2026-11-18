@@ -1,0 +1,57 @@
+.portal-shell {
+    min-height: 100vh;
+    background: linear-gradient(180deg, var(--bg) 0%, #eef5fb 100%);
+    color: var(--text);
+}
+
+.top-bar {
+    background: linear-gradient(135deg, #0f2a41 0%, #123b5d 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    padding: 1rem 1.5rem;
+    box-shadow: 0 4px 18px rgba(10, 25, 38, 0.08);
+}
+
+.brand-block {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    max-width: 1420px;
+    margin: 0 auto;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.brand-copy h1 {
+    margin: 0;
+    font-size: clamp(1.55rem, 2vw, 2.2rem);
+    line-height: 1.2;
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.brand-copy p {
+    margin: 0.15rem 0 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.86rem;
+}
+
+.main-content {
+    padding: 1.5rem 1.25rem 2rem;
+}
+
+button[mat-icon-button] {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+}

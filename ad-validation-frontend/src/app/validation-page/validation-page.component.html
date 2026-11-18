@@ -1,0 +1,70 @@
+<section class="validation-page">
+    <div class="upload-panel">
+        <div class="upload-row" *ngIf="results()">
+            <button mat-stroked-button color="warn" class="new-comparison" type="button" (click)="newComparison()">
+                <mat-icon>restart_alt</mat-icon>
+                New Comparison
+            </button>
+        </div>
+
+        <div class="upload-grid">
+            <app-upload-box label="On-Prem AD dump" [file]="uploads().onprem.file" [sheet]="uploads().onprem.sheet"
+                [error]="uploads().onprem.error" [valid]="uploads().onprem.valid"
+                (fileChange)="onFileChange('onprem', $event)" (sheetChange)="onSheetChange('onprem', $event)"
+                (clear)="clearUpload('onprem')"></app-upload-box>
+
+            <app-upload-box label="Azure AD dump" [file]="uploads().azure.file" [sheet]="uploads().azure.sheet"
+                [error]="uploads().azure.error" [valid]="uploads().azure.valid"
+                (fileChange)="onFileChange('azure', $event)" (sheetChange)="onSheetChange('azure', $event)"
+                (clear)="clearUpload('azure')"></app-upload-box>
+
+            <app-upload-box label="Vendor / Employee list" [file]="uploads().accounts.file"
+                [sheet]="uploads().accounts.sheet" [error]="uploads().accounts.error" [valid]="uploads().accounts.valid"
+                (fileChange)="onFileChange('accounts', $event)" (sheetChange)="onSheetChange('accounts', $event)"
+                (clear)="clearUpload('accounts')"></app-upload-box>
+        </div>
+
+        <div class="run-row">
+            <button mat-flat-button color="primary" class="run-button" type="button"
+                [disabled]="!ready() || isRunning()" (click)="runValidation()">
+                <mat-icon>{{ isRunning() ? 'hourglass_top' : 'auto_fix_high' }}</mat-icon>
+                {{ isRunning() ? 'Processing...' : 'Run Validation' }}
+            </button>
+        </div>
+
+        <div class="loading-state" *ngIf="isRunning()">
+            <mat-spinner diameter="18"></mat-spinner>
+            <span>Analyzing Files...</span>
+        </div>
+
+        <div class="error-banner" *ngIf="errorBanner()">
+            {{ errorBanner() }}
+        </div>
+    </div>
+
+    <section id="results-section" class="results-panel" *ngIf="results()">
+        <div class="results-header">
+            <h2>Analysis Results</h2>
+            <div class="export-actions">
+                <button mat-stroked-button color="accent" type="button" (click)="exportToExcel()">Export to
+                    Excel</button>
+                <button mat-stroked-button color="warn" type="button" (click)="exportToHtml()">Export to HTML</button>
+            </div>
+        </div>
+
+        <app-summary-cards [totalAccounts]="currentSummary().totalAccounts" [dc]="currentSummary().dc"
+            [name]="currentSummary().name" [inactive]="currentSummary().inactive"
+            [lastLogin]="currentSummary().lastLogin" [azure]="currentSummary().azure"></app-summary-cards>
+
+        <mat-tab-group [selectedIndex]="activeTabIndex()" (selectedTabChange)="activeTabIndex.set($event.index)">
+            <mat-tab *ngFor="let tab of tabs; let idx = index">
+                <ng-template mat-tab-label>
+                    <span class="tab-label"><mat-icon>{{ tab.icon }}</mat-icon> {{ tab.label }} ({{
+                        results()?.[tab.key]?.length || 0 }})</span>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+
+        <app-result-table [rows]="currentRows()"></app-result-table>
+    </section>
+</section>

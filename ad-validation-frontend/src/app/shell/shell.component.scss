@@ -1,0 +1,45 @@
+.portal-shell {
+    min-height: 100vh;
+    background: #f3f6fb;
+    color: var(--text);
+}
+
+.top-bar {
+    background: #f9fafc;
+    border-bottom: 1px solid var(--border);
+    padding: 0.85rem 1.5rem;
+}
+
+.brand-block {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(29, 53, 87, 0.08);
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+}
+
+.brand-copy h1 {
+    margin: 0;
+    font-size: 1.95rem;
+    line-height: 1.2;
+    color: var(--text);
+}
+
+.brand-copy p {
+    margin: 0.1rem 0 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+.main-content {
+    padding: 1.25rem;
+}

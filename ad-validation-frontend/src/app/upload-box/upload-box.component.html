@@ -1,0 +1,28 @@
+<div class="upload-box" [class.is-valid]="valid" [class.has-error]="error" [class.is-dragging]="isDragging"
+    (dragover)="isDragging = true; $event.preventDefault()" (dragleave)="isDragging = false"
+    (drop)="handleDrop($event)">
+    <input #picker type="file" [accept]="accepted" hidden (change)="handleInput($event)" />
+
+    <div class="drop-zone" tabindex="0" role="button" [attr.aria-label]="'Upload ' + label" (click)="openPicker(picker)"
+        (keydown.enter)="openPicker(picker)" (keydown.space)="openPicker(picker)">
+        <div class="upload-icon" [class.success]="valid" [class.error]="error">
+            <mat-icon>{{ valid ? 'check_circle' : error ? 'error' : icon }}</mat-icon>
+        </div>
+
+        <div class="upload-copy">
+            <div class="upload-title">{{ label }}</div>
+            <div class="upload-hint">{{ !file ? 'Click to browse files' : 'File ready' }}</div>
+            <div *ngIf="file" class="selected-file-row">
+                <span class="file-name">{{ file.name }}</span>
+                <span class="file-size">{{ fileSizeLabel }}</span>
+            </div>
+            <div *ngIf="error" class="upload-error">{{ error }}</div>
+        </div>
+    </div>
+
+    <div class="sheet-field">
+        <mat-icon>table_view</mat-icon>
+        <input type="text" [value]="sheet" (input)="updateSheet($any($event.target).value)"
+            aria-label="Sheet name optional" placeholder="Sheet name (optional)" />
+    </div>
+</div>
